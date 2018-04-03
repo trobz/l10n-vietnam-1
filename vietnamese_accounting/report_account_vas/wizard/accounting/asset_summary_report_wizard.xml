@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_asset_summary_report_wizard_form" model="ir.ui.view">
+            <field name="name">asset.summary.report.wizard.form</field>
+            <field name="model">asset.summary.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Asset Increase/Decrease Summary Report">
+                    <group col="2">
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="btn_generate_report" string="Print"
+                                type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

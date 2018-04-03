@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="cash_bank_book_report_xlsx" 
+            model="cash.bank.book.wizard"
+            string="Cash Bank Book Report" 
+            report_type="xlsx" name="cash_bank_book_report_xlsx"
+            file="cash_bank_book_report_xlsx"
+            attachment_use="False" menu="False"/>
+    </data>
+</openerp>

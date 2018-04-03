@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Form view -->
+        <record id="account_asset_book_view" model="ir.ui.view">
+            <field name="name">Print Asset Book Report</field>
+            <field name="model">account.asset.book</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="asset_category_id"/>
+                        </group>
+                    </group>
+                </xpath>
+                <button name="check_report" position="attributes">
+                    <attribute name="name">print_report</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="account_asset_book_action" model="ir.actions.act_window">
+            <field name="name">Asset Book</field>
+            <field name="res_model">account.asset.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_asset_book_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="report_trial_balance_xlsx" model="account.report.trial.balance.wizard"
+            string="Trial Balance Report" report_type="xlsx"
+            name="report_trial_balance_xlsx" file="report_trial_balance_xlsx"
+            attachment_use="False" />
+
+        <report id="report_cash_flow_direct_xlsx" model="account.cash.flow.report.wizard"
+            string="Cash Flow (Direct)" report_type="xlsx"
+            name="report_cash_flow_direct_xlsx" file="report_cash_flow_direct_xlsx"
+            attachment_use="False" />
+    </data>
+</openerp>

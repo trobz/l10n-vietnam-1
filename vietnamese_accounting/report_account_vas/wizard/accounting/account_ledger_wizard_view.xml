@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Form view -->
+        <record id="account_ledger_wizard_view" model="ir.ui.view">
+            <field name="name">Account Ledger</field>
+            <field name="model">account.ledger.wizard</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <button name="check_report" position="attributes">
+                    <attribute name="name">print_report</attribute>
+                </button>
+                <field name="target_move" position="after">
+                    <field name="account_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="account_ledger_action" model="ir.actions.act_window">
+            <field name="name">Account Ledger</field>
+            <field name="res_model">account.ledger.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_ledger_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Action for Lite version -->
+        <record id="account_ledger_lite_action" model="ir.actions.act_window">
+            <field name="name">Account Ledger (Lite)</field>
+            <field name="res_model">account.ledger.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_ledger_wizard_view"/>
+            <field name="target">new</field>
+            <field name="context">{'general_ledger_lite': True}</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+           <!--Inherit Purchase Receipts  -->
+        <record id="view_purchase_receipt_form_inherit" model="ir.ui.view">
+            <field name="name">view.purchase.receipt.form.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="replace" />
+                <field name="company_id" position="replace" />
+                <field name="account_id" position="replace" />
+                <field name="name" position="replace"/>
+                <field name="reference" position="replace"/>
+
+                <field name="partner_id" position="after">
+                    <field name="prefix"/>
+                    <field name="template_prefix"/>
+                    <field name="invoice_num"/>
+                    <field name="pay_now" on_change="onchange_payment(pay_now, journal_id, partner_id)" required="1"/>
+                    <field name="reference" string="Payment Ref#"/>
+                </field>
+
+                <field name="journal_id" position="before">
+                    <field name="creation_date"/>
+                    <field name="date" on_change="onchange_date(date, currency_id, currency_id, amount, company_id, context)"/>
+                </field>
+
+                <field name="journal_id" position="after">
+                    <field name="account_id" domain="[('type', 'in', ['liquidity', 'payable'])]"/>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                </field>
+
+                <field name="date_due" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+                <field name="tax_amount" position="after">
+                    <field name="tax_type" invisible="1"/>
+                </field>
+
+                <!-- <xpath expr="//sheet/notebook/page/group/group" position="after">
+                    <div style="float: right;" name="tax_type_dsc">
+                        <p>This Purchase Receipt will be listed in HTKK Purchase 01-2/GTGT</p>
+                        <p>Chỉ tiêu 1: Hàng hoá, dịch vụ dùng riêng cho SXKD chịu thuế GTGT đủ điều kiện khấu trừ thuế </p>
+                        <p>Chỉ tiêu 2: Hàng hoá, dịch vụ không đủ điều kiện khấu trừ </p>
+                        <p>Chỉ tiêu 3: Hàng hoá, dịch vụ dùng chung cho SXKD chịu thuế và không chịu thuế đủ điều kiện khấu trừ thuế </p>
+                        <p>Chỉ tiêu 4: Hàng hóa, dịch vụ dùng cho dự án đầu tư đủ điều kiện được khấu trừ thuế </p>
+                        <p>Chỉ tiêu 5: Hàng hóa, dịch vụ không phải tổng hợp trên tờ khai 01/GTGT</p>
+                    </div>
+                </xpath> -->
+               </field>
+        </record>
+
+        <!--Inherit Sales Receipts  -->
+        <record id="view_sale_receipt_form_inherit" model="ir.ui.view">
+            <field name="name">view.sale.receipt.form.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="replace" />
+                <field name="company_id" position="replace" />
+                <field name="account_id" position="replace" />
+                <field name="partner_id" position="after">
+                    <field name="prefix"/>
+                    <field name="template_prefix"/>
+                    <field name="invoice_num"/>
+
+                </field>
+
+                <field name="journal_id" position="before">
+                    <field name="creation_date"/>
+                    <field name="date"  on_change="onchange_date(date, currency_id, currency_id, amount, company_id, context)"/>
+                </field>
+
+                <field name="journal_id" position="after">
+                    <field name="account_id"
+                                  domain="[('type','in', ['liquidity', 'receivable'])]"/>
+
+                </field>
+
+                <field name="name" position="after">
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                </field>
+
+                <field name="tax_amount" position="after">
+                    <field name="tax_type" invisible="1"/>
+                </field>
+
+                <field name="reference" position="attributes">
+                    <attribute name="string">Payment Ref#</attribute>
+                </field>
+                <!-- <xpath expr="//sheet/notebook/page/group/group" position="after">
+                    <div style="float: right;" name="tax_type_dsc">
+                        <p>This Sales Receipt will be listed in HTKK Sales 01-1/GTGT </p>
+                        <p>Chỉ tiêu 1: Hàng hoá, dịch vụ không chịu thuế GTGT </p>
+                        <p>Chỉ tiêu 2: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 0%%</p>
+                        <p>Chỉ tiêu 3: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 5%% </p>
+                        <p>Chỉ tiêu 4: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 10%% </p>
+                        <p>Chỉ tiêu 5: Hàng hóa, dịch vụ không phải tổng hợp trên tờ khai 01-GTGT </p>
+                    </div>
+                </xpath> -->
+               </field>
+        </record>
+
+        <!-- inherit tree view for sale/purchase receipt -->
+        <record model="ir.ui.view" id="view_voucher_sale_purchase_receipt_tree">
+            <field name="name">account.voucher.tree</field>
+            <field name="model">account.voucher</field>
+            <field name="priority">30</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">
+                    <field name="date"/>
+                    <field name="number"/>
+                    <field name="invoice_num"/>
+                    <field name="reference" string="Payment Ref#"/>
+                    <field name="partner_id"/>
+                    <field name="journal_id" groups="account.group_account_user"/>
+                    <field name="period_id" invisible="context.get('visible', True)"/>
+                    <field name="type" invisible="context.get('visible', True)"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="audit" invisible="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_voucher.action_purchase_receipt_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_voucher_sale_purchase_receipt_tree"/>
+            <field name="act_window_id" ref="account_voucher.action_purchase_receipt"/>
+        </record>
+
+        <record id="account_voucher.action_sale_receipt_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_voucher_sale_purchase_receipt_tree"/>
+            <field name="act_window_id" ref="account_voucher.action_sale_receipt"/>
+        </record>
+
+        <!-- inherit tree view for sale/purchase receipt -->
+        <record model="ir.ui.view" id="view_voucher_inherit_tree">
+            <field name="name">account.voucher.tree</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_tree"/>
+            <field name="model">account.voucher</field>
+            <field name="arch" type="xml">
+                    <field name="reference" position="attributes">
+                        <attribute name="string">Payment Ref#</attribute>
+                    </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

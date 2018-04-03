@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+   	   	<!-- Account Foreign Receivable Payable Ledger Report-->
+   	   	
+<!--	   	<record id="account_foreign_receivable_payable_ledger_xls" model="ir.actions.report.xml">
+		      <field name="name">Account Foreign Receivable Payable Ledger</field>
+		      <field name="model">account.move.line</field>
+		      <field name="type">ir.actions.report.xml</field>
+		      <field name="report_name">foreign_receivable_payable_ledger_report</field>
+		      <field name="report_type">xlsx</field>
+		      <field name="auto" eval="False"/>
+	    </record>
+        -->
+    </data>
+</openerp>

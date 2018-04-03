@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- General -->
+		<record id="account_payable_receivable_balance_view" model="ir.ui.view">
+            <field name="name">Receivable/Payable Balance</field>
+            <field name="model">account.payable.receivable.balance</field>
+            <field name="inherit_id" ref="account.account_common_report_view" />
+            <field name="arch" type="xml">
+                <field name="date_from" position="replace" />
+                <field name="date_to" position="replace" />
+                <field name="journal_ids" position="attributes">
+                    <attribute name="widget" />
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name='target_move' position="replace">
+                    <group>
+                        <field name="account_type" />
+                        <field name="account_id"
+                            domain="[('internal_type', '=', account_type)]"
+                            options="{'no_create_edit': True, 'no_create': True}" />
+                        <field name='target_move' widget="radio" />
+                    </group>
+                    <group>
+                        <field name="date_from" required="True" />
+                        <field name="date_to" required="True" />
+                    </group>
+                </field>
+                <field name="date_to" position="after">
+                    <field name="partner_id" options="{'no_create': True}" />
+                </field>
+            </field>
+        </record>
+
+		<record model="ir.actions.act_window" id="account_payable_receivable_balance_action">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.payable.receivable.balance</field>
+			<field name="name">Receivable/Payable Balance</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="account_payable_receivable_balance_view" />
+			<field name="target">new</field>
+		</record>
+
+		<!-- Detailed -->
+		<record id="account_detailed_payable_receivable_balance_view"
+			model="ir.ui.view">
+			<field name="name">Receivable/Payable Ledger</field>
+			<field name="model">account.detailed.payable.receivable.balance</field>
+			<field name="inherit_id" ref="account.account_common_report_view" />
+			<field name="arch" type="xml">
+				<field name="date_from" position="replace" />
+				<field name="date_to" position="replace" />
+				<field name='target_move' position="replace">
+					<group>
+						<field name="account_type" />
+						<field name="account_id" domain="[('internal_type', '=', account_type)]"
+							options="{'no_create_edit': True, 'no_create': True}" />
+						<field name='target_move' widget="radio" />
+
+					</group>
+					<group>
+						<field name="partner_id" />
+						<field name="date_from" required="True" />
+						<field name="date_to" required="True" />
+					</group>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="account_detailed_payable_receivable_balance_action">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.detailed.payable.receivable.balance</field>
+			<field name="name">Receivable/Payable Ledger</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="account_detailed_payable_receivable_balance_view" />
+			<field name="target">new</field>
+		</record>
+	</data>
+</openerp>

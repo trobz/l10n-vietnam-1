@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <record id="cash_flow_direct_config_00" model="cash.flow.direct.config">
+        <field name="name">I. Lưu chuyển tiền từ hoạt động kinh doanh</field>
+        <field name="code"></field>
+        <field name="type">title_only</field>
+        <field name="sequence">00</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_01" model="cash.flow.direct.config">
+        <field name="name">1. Tiền thu từ bán hàng, cung cấp dịch vụ và doanh thu khác</field>
+        <field name="code">01</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">01</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">511,3331,131,121</field>
+        <field name="debit_accounts">111,112</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_02" model="cash.flow.direct.config">
+        <field name="name">2. Tiền chi trả cho người cung cấp hàng hóa và dịch vụ</field>
+        <field name="code">02</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">02</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112</field>
+        <field name="debit_accounts">331,151,152,153,154,155,156,157,158</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_03" model="cash.flow.direct.config">
+        <field name="name">3. Tiền chi trả cho người lao động</field>
+        <field name="code">03</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">03</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112</field>
+        <field name="debit_accounts">334</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_04" model="cash.flow.direct.config">
+        <field name="name">4. Tiền chi trả lãi vay</field>
+        <field name="code">04</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">04</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">335,635,242</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_05" model="cash.flow.direct.config">
+        <field name="name">5. Tiền chi nộp thuế thu nhập doanh nghiệp</field>
+        <field name="code">05</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">05</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">3334</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_06" model="cash.flow.direct.config">
+        <field name="name">6. Tiền thu khác từ hoạt động kinh doanh</field>
+        <field name="code">06</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">06</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">711,133,141,244</field>
+        <field name="debit_accounts">111,112</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_07" model="cash.flow.direct.config">
+        <field name="name">7. Tiền chi khác từ hoạt động kinh doanh</field>
+        <field name="code">07</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">07</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">811,161,244,333,338,344,352,353,356</field>
+        <field name="description"></field>
+    </record>
+
+    <record id="cash_flow_direct_config_15" model="cash.flow.direct.config">
+        <field name="name">Lưu chuyển tiền thuần từ hoạt động kinh doanh</field>
+        <field name="code">20</field>
+        <field name="type">total_line</field>
+        <field name="sequence">15</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+        <field name="child_config_ids" eval="[(6, 0, [
+                ref('cash_flow_direct_config_01'),
+                ref('cash_flow_direct_config_02'),
+                ref('cash_flow_direct_config_03'),
+                ref('cash_flow_direct_config_04'),
+                ref('cash_flow_direct_config_05'),
+                ref('cash_flow_direct_config_06'),
+                ref('cash_flow_direct_config_07'),
+            ])
+        ]"/>
+    </record>
+    <record id="cash_flow_direct_config_20" model="cash.flow.direct.config">
+        <field name="name">II. Lưu chuyển tiền từ hoạt động đầu tư</field>
+        <field name="code"></field>
+        <field name="type">title_only</field>
+        <field name="sequence">20</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_21" model="cash.flow.direct.config">
+        <field name="name">1. Tiền chi để mua sắm, xây dựng TSCĐ và các tài sản dài hạn khác</field>
+        <field name="code">21</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">21</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">211,213,217,241,331,3411</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_22" model="cash.flow.direct.config">
+        <field name="name">2. Tiền thu từ thanh lý, nhượng bán TSCĐ và các tài sản dài hạn khác</field>
+        <field name="code">22</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">22</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">711,5117,131</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_23" model="cash.flow.direct.config">
+        <field name="name">3. Tiền chi cho vay, mua các công cụ nợ của đơn vị khác</field>
+        <field name="code">23</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">23</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">128,171</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_24" model="cash.flow.direct.config">
+        <field name="name">4. Tiền thu hồi cho vay, bán lại các công cụ nợ của đơn vị khác</field>
+        <field name="code">24</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">24</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">128,171</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_25" model="cash.flow.direct.config">
+        <field name="name">5. Tiền chi đầu tư góp vốn vào đơn vị khác</field>
+        <field name="code">25</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">25</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">221,222,2281,331</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_26" model="cash.flow.direct.config">
+        <field name="name">6. Tiền thu hồi đầu tư góp vốn vào đơn vị khác</field>
+        <field name="code">26</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">26</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">221,222,2281,131</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_27" model="cash.flow.direct.config">
+        <field name="name">7. Tiền thu lãi cho vay, cổ tức và lợi nhuận được chia</field>
+        <field name="code">27</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">27</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">515</field>
+        <field name="debit_accounts">111,112</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_29" model="cash.flow.direct.config">
+        <field name="name">Lưu chuyển tiền thuần từ hoạt động đầu tư</field>
+        <field name="code">30</field>
+        <field name="type">total_line</field>
+        <field name="sequence">29</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+        <field name="child_config_ids" eval="[(6, 0, [
+                ref('cash_flow_direct_config_21'),
+                ref('cash_flow_direct_config_22'),
+                ref('cash_flow_direct_config_23'),
+                ref('cash_flow_direct_config_24'),
+                ref('cash_flow_direct_config_25'),
+                ref('cash_flow_direct_config_26'),
+                ref('cash_flow_direct_config_27'),
+            ])
+        ]"/>
+    </record>
+    <record id="cash_flow_direct_config_30" model="cash.flow.direct.config">
+        <field name="name">III. Lưu chuyển tiền từ hoạt động tài chính</field>
+        <field name="code"></field>
+        <field name="type">title_only</field>
+        <field name="sequence">30</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_31" model="cash.flow.direct.config">
+        <field name="name">1. Tiền thu từ phát hành cổ phiếu, nhận vốn góp của chủ sở hữu</field>
+        <field name="code">31</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">31</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">411</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_32" model="cash.flow.direct.config">
+        <field name="name">2. Tiền chi trả vốn cho các chủ sở hữu, mua lại cổ phiếu của công ty đã phát hành</field>
+        <field name="code">32</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">32</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">411,419</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_33" model="cash.flow.direct.config">
+        <field name="name">3. Tiền vay ngắn hạn, dài hạn nhận được</field>
+        <field name="code">33</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">33</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_debit</field>
+        <field name="credit_accounts">3411,3431,3432,41112</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_34" model="cash.flow.direct.config">
+        <field name="name">4. Tiền chi trả nợ gốc vay</field>
+        <field name="code">34</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">34</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">3411,3431,3432,41112</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_35" model="cash.flow.direct.config">
+        <field name="name">5. Tiền chi trả nợ thuê tài chính</field>
+        <field name="code">35</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">35</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">3412</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_36" model="cash.flow.direct.config">
+        <field name="name">6. Cổ tức, lợi nhuận đã trả cho chủ sở hữu</field>
+        <field name="code">36</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">36</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis">True</field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">sum_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">421,338</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_40" model="cash.flow.direct.config">
+        <field name="name">Lưu chuyển tiền thuần từ hoạt động tài chính</field>
+        <field name="code">40</field>
+        <field name="type">total_line</field>
+        <field name="sequence">40</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+        <field name="child_config_ids" eval="[(6, 0, [
+                ref('cash_flow_direct_config_31'),
+                ref('cash_flow_direct_config_32'),
+                ref('cash_flow_direct_config_33'),
+                ref('cash_flow_direct_config_34'),
+                ref('cash_flow_direct_config_35'),
+                ref('cash_flow_direct_config_36'),
+            ])
+        ]"/>
+    </record>
+    <record id="cash_flow_direct_config_50" model="cash.flow.direct.config">
+        <field name="name">Lưu chuyển tiền thuần trong kỳ (50 = 20+30+40)</field>
+        <field name="code">50</field>
+        <field name="type">total_line</field>
+        <field name="sequence">50</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="description"></field>
+        <field name="child_config_ids" eval="[(6, 0, [
+                ref('cash_flow_direct_config_15'),
+                ref('cash_flow_direct_config_29'),
+                ref('cash_flow_direct_config_40'),
+            ])
+        ]"/>
+    </record>
+    <record id="cash_flow_direct_config_60" model="cash.flow.direct.config">
+        <field name="name">Tiền và tương đương tiền đầu kỳ</field>
+        <field name="code">60</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">60</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_period">before</field>
+        <field name="data_method">from_either</field>
+        <field name="compute_method">debit_credit</field>
+        <field name="credit_accounts">111,112,113</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_61" model="cash.flow.direct.config">
+        <field name="name">Ảnh hưởng của thay đổi tỷ giá hối đoái quy đổi ngoại tệ</field>
+        <field name="code">61</field>
+        <field name="type">detail_line</field>
+        <field name="sequence">61</field>
+        <field name="is_bold"></field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method">from_both</field>
+        <field name="compute_method">debit_credit</field>
+        <field name="credit_accounts">4131</field>
+        <field name="debit_accounts">111,112,113</field>
+        <field name="advanced_credit_accounts">111,112,113</field>
+        <field name="advanced_debit_accounts">4131</field>
+        <field name="description"></field>
+    </record>
+    <record id="cash_flow_direct_config_70" model="cash.flow.direct.config">
+        <field name="name">Tiền và tương đương tiền cuối kỳ (70 = 50+60+61)</field>
+        <field name="code">70</field>
+        <field name="type">total_line</field>
+        <field name="sequence">70</field>
+        <field name="is_bold">True</field>
+        <field name="has_parenthesis"></field>
+        <field name="data_method"></field>
+        <field name="compute_method"></field>
+        <field name="credit_accounts"></field>
+        <field name="debit_accounts"></field>
+        <field name="advanced_credit_accounts"></field>
+        <field name="advanced_debit_accounts"></field>
+        <field name="description"></field>
+        <field name="child_config_ids" eval="[(6, 0, [
+                ref('cash_flow_direct_config_50'),
+                ref('cash_flow_direct_config_60'),
+                ref('cash_flow_direct_config_61'),
+            ])
+        ]"/>
+    </record>
+
+</openerp>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_update_account_translation_wizard_form_successed" model="ir.ui.view">
+            <field name="name">Updating Translation Successful</field>
+            <field name="model">update.account.translation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Account Finish">
+                	<group col="4">
+                    	<label align="0.0" string="All Account for Trading and Service Name have been updated"/>
+                    </group>
+                    <footer>
+                		<button string="Close" special="cancel" class="oe_highlight"/>
+                	</footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_update_account_translation_wizard_form" model="ir.ui.view">
+            <field name="name">Update Chart of Accounts Translation</field>
+            <field name="model">update.account.translation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Chart of Accounts Translation">
+                	<group col="4">
+	                    <label string="* This wizard is used to update account name from name of account template where they have a same code." colspan="4"/>
+	                    <separator colspan="4"/>
+	                    <field name="company_id"/>
+	                    <field name="lang_id"/>
+	                </group>
+                    <footer>
+                        <button name="button_update_account_name" string="Update" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Update Chart of Accounts Translation"
+            res_model="update.account.translation.wizard"
+            src_model="account.account"
+            view_mode="form"
+            view_id="view_update_account_translation_wizard_form"
+            target="new"
+            key2="client_action_multi"
+            id="action_create_chart_accounts_translation_wizard"/>
+
+    </data>
+</openerp>

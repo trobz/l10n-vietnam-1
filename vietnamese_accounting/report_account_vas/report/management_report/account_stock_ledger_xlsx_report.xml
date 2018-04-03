@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- General Payable Balance Report-->
+        <record id="action_stock_ledger_xlsx_report" model="ir.actions.report.xml">
+           <field name="name">Stock Ledger Report</field>
+           <field name="model">account.stock.ledger.wizard</field>
+           <field name="type">ir.actions.report.xml</field>
+           <field name="report_name">stock_ledger_report</field>
+           <field name="report_type">xlsx</field>
+           <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

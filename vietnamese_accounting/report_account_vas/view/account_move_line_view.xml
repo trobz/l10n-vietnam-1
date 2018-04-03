@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="trobz_report_account_vas_view_move_line_form_inherit" model="ir.ui.view">
+            <field name="name">trobz.view.move.line.form.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <field name="amount_currency" position="after" >
+                    <field name="exchange_rate" readonly="True" invisible="not context.get('journal_items_foreign_currency',False)"/>
+                </field>
+               </field>
+        </record>
+
+        <record id="trobz_report_account_vas_move_line_tree" model="ir.ui.view">
+            <field name="name">trobz.report.account.vas.move.line.tree</field>
+            <field name="model">account.move.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree colors="red:state == 'draft';black:state == 'valid'" string="Journal Items" create="true" on_write="on_create_write" version="7.0" editable="top">
+                    <field name="journal_id" options='{"no_open":True}' invisible="context.get('journal_id',False)"/>
+                    <field name="period_id" options='{"no_open":True}' invisible="context.get('period_id',False)"/>
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field name="statement_id" invisible="1"/>
+                    <field name="partner_id" on_change="onchange_partner_id(move_id, partner_id, account_id, debit, credit, date, journal_id)"/>
+                    <field name="account_id" options='{"no_open":True}' domain="[('journal_id','=',journal_id), ('company_id', '=', company_id)]" on_change="onchange_account_id(account_id, partner_id, context)"/>
+                    <field name="account_tax_id" options='{"no_open":True}' invisible="context.get('journal_type', False) not in ['sale','sale_refund','purchase','purchase_refund','general']"/>
+                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('type','not in',['view','template'])]" invisible="not context.get('analytic_journal_id',False)"/>
+                    <field name="move_id" required="0"/>
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="amount_currency"  readonly="True" />
+                    <field name="currency_id"  readonly="True"/>
+                    <field name="exchange_rate"  readonly="True"/>
+                    <field name="date_maturity" invisible="context.get('journal_type', False) not in ['sale','sale_refund','purchase','purchase_refund']"/>
+                    <field name="invoice" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+         <!-- action_journal_items_foreign_currency -->
+        <record id="action_journal_items_foreign_currency" model="ir.actions.act_window">
+            <field name="context">{'journal_type':'general','journal_items_foreign_currency':True}</field>
+            <field name="name">Journal Items Foreign Currency</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_id" ref="trobz_report_account_vas_move_line_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('currency_id','!=',False)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Select the period and the journal you want to fill.
+              </p><p>
+                This view can be used by accountants in order to quickly record
+                entries in OpenERP. If you want to record a supplier invoice,
+                start by recording the line of the expense account. OpenERP
+                will propose to you automatically the Tax related to this
+                account and the counterpart "Account Payable".
+              </p>
+            </field>
+        </record>
+
+        <record id="action_journal_items_foreign_currency_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="trobz_report_account_vas_move_line_tree" />
+            <field name="act_window_id" ref="action_journal_items_foreign_currency" />
+        </record>
+
+        <record id="action_journal_items_foreign_currency_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="trobz_report_account_vas_view_move_line_form_inherit" />
+            <field name="act_window_id" ref="action_journal_items_foreign_currency" />
+        </record>
+
+        <record id="account.action_account_moves_all_a" model="ir.actions.act_window">
+            <field name="domain">[('currency_id','=',False)]</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record id="action_account_receipt_journal_xls" model="ir.actions.report.xml">
+              <field name="name">Account Receipt Journal Book</field>
+              <field name="model">account.move.line</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">account.receipt.journal.report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+
+           <record id="action_account_payment_journal_xls" model="ir.actions.report.xml">
+              <field name="name">Account Payment Journal Book</field>
+              <field name="model">account.move.line</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">account.payment.journal.report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>
