@@ -20,7 +20,7 @@
 
 
 {
-    "name": "Trobz Report Accounting Vietnamese Localization",
+    "name": "Report Accounting Vietnamese Localization",
     "version": "1.1",
     "author": "Trobz",
     "category": 'Generic Modules/Accounting',
