@@ -18,8 +18,6 @@
 #
 ##############################################################################
 
-# import account_balance_sheet_report_template
-# import account_balance_sheet_report
 import account_balance_sheet_xlsx_report
 import account_cash_flow_direct_report  # No longer usable in Odoo v9
 import account_cash_flow_direct_xlsx_report
