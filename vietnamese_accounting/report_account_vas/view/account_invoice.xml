@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <function model="account.invoice" name="delete_view_inherit"></function>
+        <!-- Invoice Supplier -->
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form (trobz_account_vas)</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="replace"/>
+                <field name="supplier_invoice_number" position="replace"/>
+                <field name="origin" position="replace"/>
+                <field name="account_id" position="replace"/>
+                <field name="fiscal_position" position="replace"/>
+
+                <field name="partner_id" position="after">
+                    <field name="prefix"/>
+                    <field name="template_prefix"/>
+                    <field name="supplier_invoice_number"/>
+                    <field name="origin"/>
+                </field>
+
+                <field name="journal_id" position="after">
+                     <field domain="[('company_id', '=', company_id), ('type', '=', 'payable')]"
+                            name="account_id" groups="account.group_account_user"/>
+                </field>
+                <field name="date_due" position="before">
+                    <field name="creation_date"/>
+                    <field name="date_invoice"/>
+                </field>
+
+                <field name="check_total" position="after">
+                    <field name="fiscal_position" widget="selection" />
+                </field>
+
+                <xpath expr="//field[@name = 'invoice_line']/tree/field[@name = 'price_subtotal']" position="after">
+                    <field name="tax_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name = 'invoice_line']/tree/field[@name = 'invoice_line_tax_id']" position="attributes">
+                    <attribute name="on_change">onchange_tax_id(invoice_line_tax_id, context)</attribute>
+                </xpath>
+                <!-- <xpath expr="//sheet/notebook/page/div" position="after">
+                    <div style="width: 100%%;" name='tax_type_dsc'>
+                        <p>This invoice will be listed in HTKK Purchase 01-2/GTGT</p>
+                        <p>Chỉ tiêu 1: Hàng hoá, dịch vụ dùng riêng cho SXKD chịu thuế GTGT đủ điều kiện khấu trừ thuế </p>
+                        <p>Chỉ tiêu 2: Hàng hoá, dịch vụ không đủ điều kiện khấu trừ</p>
+                        <p>Chỉ tiêu 3: Hàng hoá, dịch vụ dùng chung cho SXKD chịu thuế và không chịu thuế đủ điều kiện khấu trừ thuế </p>
+                        <p>Chỉ tiêu 4: Hàng hóa, dịch vụ dùng cho dự án đầu tư đủ điều kiện được khấu trừ thuế</p>
+                        <p>Chỉ tiêu 5: Hàng hóa, dịch vụ không phải tổng hợp trên tờ khai 01/GTGT</p>
+                    </div>
+                </xpath> -->
+            </field>
+        </record>
+
+        <!-- Invoice Customer -->
+        <record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="replace"/>
+                <field name="origin" position="replace"/>
+                <field name="date_due" position="replace"/>
+
+                <field name="partner_id" position="after">
+                    <field name="prefix"/>
+                    <field name="template_prefix"/>
+                    <field name="customer_invoice_num"/>
+                    <field name="origin"/>
+                </field>
+
+
+                <field name="journal_id" position="before">
+                    <field name="creation_date"/>
+                    <field name="date_invoice"/>
+                    <field name="date_due"/>
+                </field>
+
+                <field name="fiscal_position" position="replace"/>
+                <xpath expr="//sheet/group/group/div[@groups='base.group_multi_currency']" position="after">
+                    <field name="fiscal_position" widget="selection" />
+                </xpath>
+                <xpath expr="//field[@name = 'invoice_line']/tree/field[@name = 'price_subtotal']" position="after">
+                    <field name="tax_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name = 'invoice_line']/tree/field[@name = 'invoice_line_tax_id']" position="attributes">
+                    <attribute name="on_change">onchange_tax_id(invoice_line_tax_id, context)</attribute>
+                </xpath>
+                <!-- <xpath expr="//sheet/notebook/page/div" position="after">
+                    <div style="width: 100%%;" name='tax_type_dsc'>
+                        <p>This Customer Invoice will be listed in HTKK Sales 01-1/GTGT</p>
+                        <p>Chỉ tiêu 1: Hàng hoá, dịch vụ không chịu thuế GTGT </p>
+                        <p>Chỉ tiêu 2: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 0%% </p>
+                        <p>Chỉ tiêu 3: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 5%% </p>
+                        <p>Chỉ tiêu 4: Hàng hoá, dịch vụ chịu thuế suất thuế GTGT 10%% </p>
+                        <p>Chỉ tiêu 5: Hàng hóa, dịch vụ không phải tổng hợp trên tờ khai 01-GTGT </p>
+                    </div>
+                </xpath> -->
+               </field>
+        </record>
+
+
+       <record id="customer_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.customer.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';black:state in ('proforma','proforma2','open');gray:state == 'cancel'" string="Invoice">
+                    <field name="partner_id" groups="base.group_user"/>
+                    <field name="date_invoice"/>
+                    <field name="number"/>
+                    <field name="customer_invoice_num" string="Invoice Number"/>
+                    <field name="reference" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="period_id" invisible="1" groups="account.group_account_user"/>
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    <field name="user_id"/>
+                    <field name="date_due"/>
+                    <field name="origin"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="residual" sum="Residual Amount"/>
+                    <field name="amount_untaxed" sum="Untaxed Amount"/>
+                    <field name="amount_total" sum="Total Amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+       </record>
+
+        <record id="supplier_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="number" position="after">
+                    <field name="supplier_invoice_number" string="Invoice Number"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Customer Invoice -->
+        <record id="account.action_invoice_tree1_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="customer_invoice_tree"/>
+            <field name="act_window_id" ref="account.action_invoice_tree1"/>
+        </record>
+
+       <!-- Customer Refunds -->
+       <record id="account.action_invoice_tree3_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="customer_invoice_tree"/>
+            <field name="act_window_id" ref="account.action_invoice_tree3"/>
+       </record>
+       <record id="account.action_invoice_tree3_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="invoice_form_inherit"/>
+            <field name="act_window_id" ref="account.action_invoice_tree3"/>
+        </record>
+
+
+
+    </data>
+</openerp>

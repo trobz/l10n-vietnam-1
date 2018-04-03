@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="account_ledger_report_xlsx" model="ir.actions.report.xml">
+            <field name="name">Account Ledger Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.ledger.wizard</field>
+            <field name="report_name">account_ledger_report_xlsx</field>
+            <field name="report_type">xlsx</field>
+             <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

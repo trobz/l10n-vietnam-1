@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- General Payable Balance Report-->
+        <record id="action_general_detail_receivable_payable_balance" model="ir.actions.report.xml">
+           <field name="name">General Detail Receivable / Payable Balance Report</field>
+           <field name="model">account.detailed.payable.receivable.balance</field>
+           <field name="type">ir.actions.report.xml</field>
+           <field name="report_name">general_detail_receivable_payable_balance</field>
+           <field name="report_type">xlsx</field>
+           <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="balance_sheet_report" model="ir.actions.report.xml">
+            <field name="name">Balance Sheet Report</field>
+            <field name="model">account.move</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">balance_sheet_report</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

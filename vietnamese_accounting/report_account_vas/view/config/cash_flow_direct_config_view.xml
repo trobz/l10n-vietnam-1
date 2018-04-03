@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_cash_flow_direct_config_form" model="ir.ui.view">
+            <field name="name">cash.flow.direct.config.form</field>
+            <field name="model">cash.flow.direct.config</field>
+            <field name="arch" type="xml">
+                <form string="Cash Flow (Direct) Configuration">
+                    <sheet>
+                        <group>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="type" />
+                                <field name="sequence" />
+                            </group>
+                            <group>
+                                <field name="code" />
+                            </group>
+                        </group>
+
+                        <group string="Data Configuration" colspan="1"
+                            attrs="{'invisible': [('type', '=', 'title_only')]}">
+                            <field name="child_config_ids" widget="many2many_tags"
+                                domain="[('type', '!=', 'title_only')]"
+                                attrs="{'invisible': ['|', ('type', '!=', 'total_line')]}" />
+                            <field name="data_period"
+                                attrs="{'required': [('type', '=', 'detail_line')], 'invisible': [('type', '!=', 'detail_line')]}" />
+                            <field name="data_method"
+                                attrs="{'required': [('type', '=', 'detail_line')], 'invisible': [('type', '!=', 'detail_line')]}" />
+                            <field name="compute_method"
+                                attrs="{'invisible': ['|', ('type', '!=', 'detail_line'), ('data_method', 'in', ['from_debit', 'from_credit'])], 'required': [('type', '=', 'detail_line')]}" />
+                        </group>
+
+                        <separator string="Account Configuration"
+                            attrs="{'invisible': [('type', '!=', 'detail_line')]}" />
+                        <separator string="Total Debit"
+                            attrs="{'invisible': ['|', ('type', '!=', 'detail_line'), '|', ('compute_method', 'not in', ['debit_credit', 'credit_debit']), ('data_method', 'in', ['from_credit', 'from_debit', 'from_either'])]}" />
+                        <group colspan="1"
+                            attrs="{'invisible': [('type', '!=', 'detail_line')]}">
+                            <field name="debit_accounts"
+                                attrs="{'required': [('type', '=', 'detail_line'), ('data_method', '!=', 'from_credit')], 'invisible': [('data_method', '=', 'from_credit')]}" />
+
+                            <field name="credit_accounts"
+                                attrs="{'required': [('type', '=', 'detail_line'), ('data_method', '!=', 'from_debit')], 'invisible': [('data_method', '=', 'from_debit')]}" />
+                        </group>
+
+                        <separator string="Total Credit"
+                            attrs="{'invisible': ['|', ('type', '!=', 'detail_line'), '|', ('compute_method', 'not in', ['debit_credit', 'credit_debit']), ('data_method', 'in', ['from_credit', 'from_debit', 'from_either'])]}" />
+                        <group colspan="1"
+                            attrs="{'invisible': ['|', ('type', '!=', 'detail_line'), '|', ('compute_method', 'not in', ['debit_credit', 'credit_debit']), ('data_method', 'in', ['from_credit', 'from_debit', 'from_either'])]}">
+                            <field name="advanced_debit_accounts"
+                                attrs="{'required': [('type', '=', 'detail_line'), ('compute_method', 'in', ['debit_credit', 'credit_debit']), ('data_method', '!=', 'from_either')]}" />
+
+                            <field name="advanced_credit_accounts"
+                                attrs="{'required': [('type', '=', 'detail_line'), ('compute_method', 'in', ['debit_credit', 'credit_debit']), ('data_method', '!=', 'from_either')]}" />
+                        </group>
+
+                        <group string="XLSX File Configuration">
+                            <group>
+                                <field name="is_bold" />
+                            </group>
+                            <group>
+                                <field name="has_parenthesis"
+                                    attrs="{'invisible': [('type', '!=', 'detail_line')]}" />
+                            </group>
+                        </group>
+
+                        <label for="description" string="Description" />
+                        <group colspan="1">
+                            <field name="description" nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cash_flow_direct_config_search" model="ir.ui.view">
+            <field name="name">cash.flow.direct.config.search</field>
+            <field name="model">cash.flow.direct.config</field>
+            <field name="arch" type="xml">
+                <search string="Cash Flow (Direct) Configuration">
+                    <field name="code" />
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <record id="view_cash_flow_direct_config_tree" model="ir.ui.view">
+            <field name="name">cash.flow.direct.config.tree</field>
+            <field name="model">cash.flow.direct.config</field>
+            <field name="arch" type="xml">
+                <tree string="Cash Flow (Direct) Configuration">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="type" />
+                    
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

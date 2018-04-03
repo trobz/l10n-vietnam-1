@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record id="asset_summary_xlsx_report" model="ir.actions.report.xml">
+            <field name="name">Asset Increase/Decrease Summary</field>
+            <field name="model">asset.summary.report.wizard</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">asset_summary_xlsx_report</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

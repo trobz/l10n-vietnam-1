@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="indirect_cash_flow_config_form" model="ir.ui.view">
+            <field name="name">indirect.cash.flow.config.form</field>
+            <field name="model">indirect.cash.flow.config</field>
+            <field name="arch" type="xml">
+                <form string="Indirect Cash Flow Configuration" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="item"/>
+                            <field name="code"/>
+                            <field name="parent_id"/>
+                            <field name="dr_account_ids" attrs="{'invisible':[('is_formula_active','=',True)]}" widget="many2many_tags" class="oe_inline" placeholder="Accounts to get Debit Balance"/>
+                            <field name="cr_account_ids" attrs="{'invisible':[('is_formula_active','=',True)]}" widget="many2many_tags" class="oe_inline" placeholder="Accounts to get Credit Balance"/>
+                            <field name="is_inverted_result" attrs="{'invisible':[('is_formula_active','=',True)]}" />
+                            <field name="is_formula_active"/>
+                            <field name="account_ids" attrs="{'invisible':[('is_formula_active','=',False)]}" widget="many2many_tags" class="oe_inline" placeholder="Accounts For Active Formula Case"/>
+                            <field name="is_positive_difference" attrs="{'invisible':[('is_formula_active','=',False)]}"/>
+                            <field name="python_formular" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="indirect_cash_flow_config_search" model="ir.ui.view">
+            <field name="name">indirect.cash.flow.config.search</field>
+            <field name="model">indirect.cash.flow.config</field>
+            <field name="arch" type="xml">
+                <search string="Indirect Cash Flow Configuration" version="7.0">
+                    <field name="item"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="dr_account_ids"/>
+                    <field name="cr_account_ids"/>
+                    <field name="is_inverted_result"/>
+                    <field name="is_formula_active"/>
+                    <field name="account_ids"/>
+                    <field name="is_positive_difference"/>
+                    <field name="python_formular" invisible="1"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="indirect_cash_flow_config_tree" model="ir.ui.view">
+            <field name="name">indirect.cash.flow.config.tree</field>
+            <field name="model">indirect.cash.flow.config</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Indirect Cash Flow Configuration" colors="blue:parent_id == False">
+                    <field name="item"/>
+                    <field name="code"/>
+                    <field name="dr_account_ids"/>
+                    <field name="cr_account_ids"/>
+                    <field name="is_inverted_result"/>
+                    <field name="is_formula_active"/>
+                    <field name="account_ids"/>
+                    <field name="parent_id" invisible="1"/>
+                    <field name="is_positive_difference"/>
+                </tree>
+            </field>
+        </record>
+
+          <record model="ir.actions.act_window" id="action_indirect_cash_flow_config">
+          <field name="name">Indirect Cash Flow Configuration</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">indirect.cash.flow.config</field>
+          <field name="view_type">tree</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('parent_id','=',False)]</field>
+          <field name="view_id" ref="indirect_cash_flow_config_tree"/>
+        </record>
+
+          <record model="ir.actions.act_window" id="action_indirect_cash_flow_config2">
+          <field name="name">Indirect Cash Flow Configuration</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">indirect.cash.flow.config</field>
+          <field name="domain">[('id','=',active_id)]</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+
+       <record model="ir.values" id="ir_open_action_indirect_cashflow_config_items">
+            <field name="key2">tree_but_open</field>
+            <field name="model">indirect.cash.flow.config</field>
+            <field name="name">Indirect Cash Flow Config Items</field>
+            <field eval="'ir.actions.act_window,%d'%action_indirect_cash_flow_config2" name="value"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_indirect_cash_flow_config_tree_view">
+          <field name="name">Indirect Cash Flow Configuration</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">indirect.cash.flow.config</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="indirect_cash_flow_config_tree"/>
+        </record>
+
+    </data>
+</openerp>

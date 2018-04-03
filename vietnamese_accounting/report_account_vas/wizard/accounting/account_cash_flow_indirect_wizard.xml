@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <!-- Form view -->
+        <record id="account_cash_flow_indirect_view" model="ir.ui.view">
+            <field name="name">Cash Flow (indirect)</field>
+            <field name="model">account.cash.flow.indirect.wizard</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <field name="journal_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="account_cash_flow_indirect_action" model="ir.actions.act_window">
+            <field name="name">Cash Flow (indirect)</field>
+            <field name="res_model">account.cash.flow.indirect.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context">{"report_type": "indirect"}</field>
+            <field name="view_id" ref="account_cash_flow_indirect_view"/>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="balance_sheet_config_form" model="ir.ui.view">
+            <field name="name">balance.sheet.config.form</field>
+            <field name="model">balance.sheet.config</field>
+            <field name="arch" type="xml">
+                <form string="Balance Sheet Configuration" version="7.0">
+                    <sheet>
+                        <group>
+                            <h1 class="hidden-xs">
+                                <field name="item"/>
+                            </h1>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="is_inverted_result"/>
+                                <field name="is_parenthesis"/>
+                                <field name="group_by_partner"/>
+                            </group>
+                            <group/>
+                        </group>
+                        
+                        <notebook>
+                            <page name="acounts" string="Involving Accounts">
+                                <group colspan="4">
+                                    <field name="config_line_ids" nolabel="1">
+                                        <tree editable="top"
+                                            decoration-danger="operator=='minus'">
+                                            <field name="code"/>
+                                            <field name="is_debit_balance"/>
+                                            <field name="is_credit_balance"/>
+                                            <field name="is_inverted"/>
+                                            <field name="is_parenthesis"/>
+                                            <field name="operator"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="balance_sheet_config_search" model="ir.ui.view">
+            <field name="name">balance.sheet.config.search</field>
+            <field name="model">balance.sheet.config</field>
+            <field name="arch" type="xml">
+                <search string="Balance Sheet Configuration">
+                    <field name="code"/>
+                    <field name="item"/>
+                    <field name="is_inverted_result"/>
+                    <field name="is_parenthesis"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="balance_sheet_config_tree" model="ir.ui.view">
+            <field name="name">balance.sheet.config.tree</field>
+            <field name="model">balance.sheet.config</field>
+            <field name="arch" type="xml">
+                <tree string="Balance Sheet Configuration">
+                    <field name="item"/>
+                    <field name="code"/>
+                    <field name="is_inverted_result"/>
+                    <field name="is_parenthesis"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_balance_sheet_config">
+            <field name="name">Balance Report Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">balance.sheet.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="balance_sheet_config_tree"/>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        <record id="account_cash_flow_indirect_report" model="ir.actions.report.xml">
+            <field name="name">Account Cash Flow Indirect Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.move.line</field>
+            <field name="report_name">cash_flow_indirect_report</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_xls_odt')"/>
+            <field name="parser_loc">trobz_report_account_vas/report/account_cash_flow_indirect_report.py</field>
+            <field name="report_rml">trobz_report_account_vas/report/account_cash_flow_indirect_report.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>
+        -->
+    </data>
+</openerp>

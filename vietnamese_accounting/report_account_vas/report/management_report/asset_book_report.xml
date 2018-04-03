@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record id="action_account_asset_book_xls" model="ir.actions.report.xml">
+              <field name="name">Account Asset Book</field>
+              <field name="model">account.move.line</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">asset.book.report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

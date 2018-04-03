@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_form_inherit" model="ir.ui.view">
+            <field name="name">account.account.search.form_inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field name="arch" type="xml">
+                  <field name="user_type_id" position="after">
+                    <field name="company_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

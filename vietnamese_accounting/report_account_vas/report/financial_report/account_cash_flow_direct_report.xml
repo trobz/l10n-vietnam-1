@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="account_cash_flow_direct_report_xls" model="ir.actions.report.xml">
+            <field name="name">Cash Flow Direct Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.cash.flow.indirect.wizard</field>
+            <field name="report_name">account_cash_flow_direct_report_xls</field>
+            <field name="report_type">xls</field>
+             <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>
