@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- General Payable Balance XLSX Report -->
+        <record id="action_general_receivable_payable_balance_xls"
+            model="ir.actions.report.xml">
+            <field name="name">General Receivable Payable Balance Report XLSX</field>
+            <field name="model">account.payable.receivable.balance</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">general_receivable_payable_balance_xlsx</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- General Payable Balance Report-->
+        <record id="action_general_detail_receivable_payable_balance" model="ir.actions.report.xml">
+           <field name="name">General Detail Receivable / Payable Balance Report</field>
+           <field name="model">account.detailed.payable.receivable.balance</field>
+           <field name="type">ir.actions.report.xml</field>
+           <field name="report_name">general_detail_receivable_payable_balance</field>
+           <field name="report_type">xlsx</field>
+           <field name="auto" eval="False"/>
+        </record>
+        
+   	   	<!-- Account Foreign Receivable Payable Ledger Report-->
+   	   	
+<!--	   	<record id="account_foreign_receivable_payable_ledger_xls" model="ir.actions.report.xml">
+		      <field name="name">Account Foreign Receivable Payable Ledger</field>
+		      <field name="model">account.move.line</field>
+		      <field name="type">ir.actions.report.xml</field>
+		      <field name="report_name">foreign_receivable_payable_ledger_report</field>
+		      <field name="report_type">xlsx</field>
+		      <field name="auto" eval="False"/>
+	    </record>
+        -->
+    </data>
+</openerp>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="account_vas_report_general_journal_view" model="ir.ui.view">
+            <field name="name">General Journal</field>
+            <field name="model">vas.account.general.journal</field>
+            <field name="inherit_id" ref="account.account_common_report_view" />
+            <field name="arch" type="xml">
+				<xpath expr="//form/group[1]" position="replace">
+					<group>
+						<group>
+							<field name="target_move" widget="radio"/>
+						</group>
+						<group>
+			                <field name="date_from" required="1"/>
+			                <field name="date_to" required="1"/>
+		                </group>
+	                </group>
+				</xpath>
+                
+                <field name="journal_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_account_vas_general_journal" model="ir.actions.act_window">
+            <field name="name">General Journal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vas.account.general.journal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="account_vas_report_general_journal_view"/>
+        </record>
+
+
+    </data>
+</openerp>

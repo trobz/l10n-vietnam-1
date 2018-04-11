@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="cash_book_wizard_view" model="ir.ui.view">
+            <field name="name">Cash book</field>
+            <field name="model">cash.book.wizard</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="target_move"/>
+                            <field name="account_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="type_report" invisible="1" on_change="onchange_type(type_report)"/>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!-- Action -->
+        <record id="action_cash_book_wizard" model="ir.actions.act_window">
+            <field name="name">Cash book</field>
+            <field name="res_model">cash.book.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="report_account_vas.cash_book_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

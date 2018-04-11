@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Balance Sheet -->
+        <record id="balance_sheet_report" model="ir.actions.report.xml">
+            <field name="name">Balance Sheet Report</field>
+            <field name="model">account.move</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">balance_sheet_report</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False"/>
+        </record>
+        
+        <!-- Trial Balance -->
+        <report id="report_trial_balance_xlsx" model="account.report.trial.balance.wizard"
+            string="Trial Balance Report" report_type="xlsx"
+            name="report_trial_balance_xlsx" file="report_trial_balance_xlsx"
+            attachment_use="False" />
+
+        <!-- Cash Flow (Direct) -->
+        <report id="report_cash_flow_direct_xlsx" model="account.cash.flow.report.wizard"
+            string="Cash Flow (Direct)" report_type="xlsx"
+            name="report_cash_flow_direct_xlsx" file="report_cash_flow_direct_xlsx"
+            attachment_use="False" />
+
+        <!-- Profit and Loss -->
+        <record id="account_profit_and_loss_report_xlsx" model="ir.actions.report.xml">
+            <field name="name">Account Profit And Loss Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.account</field>
+            <field name="report_name">account_profit_and_loss_report_xlsx</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False" />
+        </record>
+<!--         
+        Cash Flow (Indirect) ============> NOT READY YET
+        <record id="account_cash_flow_indirect_report" model="ir.actions.report.xml">
+            <field name="name">Account Cash Flow Indirect Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.move.line</field>
+            <field name="report_name">cash_flow_indirect_report</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format"
+                eval="ref('report_aeroo_ooo.report_mimetypes_xls_odt')" />
+            <field name="parser_loc">trobz_report_account_vas/report/account_cash_flow_indirect_report.py</field>
+            <field name="report_rml">trobz_report_account_vas/report/account_cash_flow_indirect_report.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record> -->
+    </data>
+</openerp>

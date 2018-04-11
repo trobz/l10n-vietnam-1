@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Form view -->
+        <record id="account_ledger_balance_wizard_view" model="ir.ui.view">
+            <field name="name">Print Stock Ledger Wizard</field>
+            <field name="model">account.stock.ledger.wizard</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="target_move"/>
+                            <field name="location_id" domain="[('usage', '=', 'internal')]"/>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                        </group>
+                        
+                        <group>
+                            <field name="account_id" domain="[('parent_id', '!=', False), ('code', '=like', '15%')]"/>
+                            <field name="product_tmpl_id" required="1"/>
+                            <field name="product_id"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                </xpath>
+                
+                <button name="check_report" position="attributes">
+                    <attribute name="name">print_report</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="account_stock_ledger_wizard_action" model="ir.actions.act_window">
+            <field name="name">Stock Ledger</field>
+            <field name="res_model">account.stock.ledger.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_ledger_balance_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

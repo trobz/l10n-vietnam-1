@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Account Ledger Report -->
+        <record id="account_ledger_report_xlsx" model="ir.actions.report.xml">
+            <field name="name">Account Ledger Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.ledger.wizard</field>
+            <field name="report_name">account_ledger_report_xlsx</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- Account Receipt Journal Book -->
+        <record id="action_account_receipt_journal_xls" model="ir.actions.report.xml">
+            <field name="name">Account Receipt Journal Book</field>
+            <field name="model">account.move.line</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">account.receipt.journal.report</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- Account Payment Journal Book -->
+        <record id="action_account_payment_journal_xls" model="ir.actions.report.xml">
+            <field name="name">Account Payment Journal Book</field>
+            <field name="model">account.move.line</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">account.payment.journal.report</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- General Payable Balance Report -->
+        <record id="action_stock_ledger_xlsx_report" model="ir.actions.report.xml">
+            <field name="name">Stock Ledger Report</field>
+            <field name="model">account.stock.ledger.wizard</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">stock_ledger_report</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- Account Asset Book -->
+        <record id="action_account_asset_book_xls" model="ir.actions.report.xml">
+            <field name="name">Account Asset Book</field>
+            <field name="model">account.move.line</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">asset.book.report</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- Account Asset Book -->
+        <record id="asset_summary_xlsx_report" model="ir.actions.report.xml">
+            <field name="name">Asset Increase/Decrease Summary</field>
+            <field name="model">asset.summary.report.wizard</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">asset_summary_xlsx_report</field>
+            <field name="report_type">xlsx</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- Cash Bank Book Report -->
+        <report id="cash_bank_book_report_xlsx" model="cash.bank.book.wizard"
+            string="Cash Bank Book Report" report_type="xlsx"
+            name="cash_bank_book_report_xlsx" file="cash_bank_book_report_xlsx"
+            attachment_use="False" menu="False" />
+
+        <!-- Cash Book Report -->
+        <report id="cash_book_report_xlsx" model="cash.book.wizard"
+            string="Cash Book Report" report_type="xlsx"
+            name="cash_book_report_xlsx" file="cash_book_report_xlsx"
+            attachment_use="False" menu="False" />
+
+        <!-- Cash Book Report -->
+        <record id="cash_book_report_xls" model="ir.actions.report.xml">
+            <field name="name">Cash Book Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.cash.book</field>
+            <field name="report_name">cash_book_report_xls</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False" />
+        </record>
+
+        <!-- General Ledger Report -->
+        <record id="general_ledger_report_xls" model="ir.actions.report.xml">
+            <field name="name">General Ledger Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">general.ledger</field>
+            <field name="report_name">general_ledger_report_xls</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False" />
+        </record>
+    </data>
+</openerp>

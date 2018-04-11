@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="account_asset_book_report_parameter" model="ir.config_parameter">
+        	<field name="key">account_asset_book_report_parameter</field>
+        	<field name="value">{ 'format_form':'Mẫu số S021 - DN', 'form_formated_by_rule': '''(Ban hành theo QĐ số: 15/2006/QĐ/BTC
+ngày 20/03/2006 của Bộ trưởng BTC)'''}
+        	</field>
+        </record>
+        
+        <record id="account_general_journal_report_parameter" model="ir.config_parameter">
+        	<field name="key">account_general_journal_report_parameter</field>
+        	<field name="value">{ 'format_form':'Mẫu số S3a-DN', 'form_formated_by_rule': '''(Ban hành theo QĐ số 15/2006/QĐ-BTC ngày 20/03/2006 của Bộ trưởng BTC)'''}
+        	</field>
+        </record>        
+    </data>
+</openerp>

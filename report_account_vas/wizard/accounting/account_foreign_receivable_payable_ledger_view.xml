@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="account_foreign_receivable_payable_ledger_view" model="ir.ui.view">
+            <field name="name">Foreign Receivable/Payable Ledger</field>
+            <field name="model">account.foreign.receivable.payable.ledger</field>
+            <field name="inherit_id" ref="account.account_common_report_view" />
+            <field name="arch" type="xml">
+                <field name="target_move" position="after">
+                    <field name="result_selection"/>
+                    <field name="foreign_currency_id"/>
+                    <field name="partner_id" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window"
+            id="account_foreign_receivable_payable_ledger_action">
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.foreign.receivable.payable.ledger</field>
+            <field name="name">Foreign Receivable/Payable Ledger</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="account_foreign_receivable_payable_ledger_view" />
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

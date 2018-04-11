@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="profit_and_loss_config_form" model="ir.ui.view">
+            <field name="name">profit.and.loss.config.form</field>
+            <field name="model">profit.and.loss.config</field>
+            <field name="arch" type="xml">
+                <form string="Profit and Loss Configuration" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="item"/>
+                            <field name="code"/>
+                            <field name="account_ids" widget="many2many_tags" class="oe_inline" placeholder="Accounts"/>
+                            <field name="counterpart_account_ids" widget="many2many_tags" class="oe_inline" placeholder="Counter-part Accounts"/>
+                            <field name="is_debit"/>
+                            <field name="is_credit"/>
+                            <field name="exception"/>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="profit_and_loss_config_search" model="ir.ui.view">
+            <field name="name">profit.and.loss.config.search</field>
+            <field name="model">profit.and.loss.config</field>
+            <field name="arch" type="xml">
+                <search string="Profit and Loss Configuration">
+                    <field name="item"/>
+                    <field name="code"/>
+                    <field name="account_ids"/>
+                    <field name="counterpart_account_ids"/>
+                    <field name="is_debit"/>
+                    <field name="is_credit"/>
+                    <field name="exception"/>
+                    <field name="note"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="profit_and_loss_config_tree" model="ir.ui.view">
+            <field name="name">profit.and.loss.config.tree</field>
+            <field name="model">profit.and.loss.config</field>
+            <field name="arch" type="xml">
+                <tree string="Profit and Loss Configuration">
+                    <field name="item"/>
+                    <field name="code"/>
+                    <field name="account_ids"/>
+                    <field name="counterpart_account_ids"/>
+                    <field name="is_debit"/>
+                    <field name="is_credit"/>
+                    <field name="exception"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+          <record model="ir.actions.act_window" id="action_profit_and_loss_config">
+          <field name="name">Profit and Loss Configuration</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">profit.and.loss.config</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="profit_and_loss_config_tree"/>
+        </record>
+
+    </data>
+</openerp>

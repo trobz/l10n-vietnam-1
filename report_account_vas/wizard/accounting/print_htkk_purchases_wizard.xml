@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <!--  HTKK Purchases -->
+        <record id="view_print_htkk_purchase_wizard_form" model="ir.ui.view">
+            <field name="name">view.print.htkk.purchase.wizard.form</field>
+            <field name="model">print.htkk.purchases.wizard</field>
+            <field name="arch" type="xml">
+                <form string="HTKK Purchases (for HTKK Purchases)" version="7.0">
+                    <group colspan="4">
+                        <field name="from_period_id"/>
+                        <field name="to_period_id"/>
+                    </group>
+                    <footer>
+                        <button string="Print" class="oe_highlight" name="print_htkk_purchases" type="object"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

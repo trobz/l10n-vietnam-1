@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Accounting > VAS Reports -->
+        <menuitem id="menu_vas_reports" name="VAS Reports"
+            parent="account.menu_finance" groups="account.group_account_user"
+            sequence="10" />
+        <!-- Accounting > VAS Reports > Partner Accounting -->
+        <menuitem id="menu_partner_reports" name="Partner Accounting"
+            parent="menu_vas_reports" sequence="8" />
+
+        <!-- Accounting > VAS Reports > Accounting Reports > Receivable & 
+            Payable Ledger -->
+        <menuitem name="Receivable/Payable Ledger" parent="menu_partner_reports"
+            action="account_detailed_payable_receivable_balance_action"
+            id="account_detailed_payable_receivable_balance_menu"
+            sequence="20" />
+
+        <!-- Accounting > VAS Reports > Accounting Reports > Receivable & 
+            Payable Balance -->
+        <menuitem name="Receivable/Payable Balance" parent="menu_partner_reports"
+            action="account_payable_receivable_balance_action" id="account_payable_receivable_balance_menu"
+            sequence="30" />
+
+        <!-- Accounting > VAS Reporting > Cash/Bank Accounting -->
+        <menuitem id="menu_cash_bank_accounting" name="Cash/Bank Accounting"
+            parent="menu_vas_reports" sequence="8" />
+
+        <menuitem name="Cash Book" parent="menu_cash_bank_accounting"
+            action="action_cash_book_wizard" id="account_cash_book_xlsx_menu"
+            sequence="5" />
+
+        <menuitem name="Cash at Bank Book" parent="menu_cash_bank_accounting"
+            action="action_cash_bank_book_wizard" id="account_cash_bank_book_menu"
+            sequence="10" />
+
+        <!-- Accounting > VAS Reporting > Legal Reports -->
+        <menuitem id="menu_legal_reports" name="Legal Reports"
+            parent="menu_vas_reports" sequence="9" />
+
+        <!-- FIXME: Accounting > VAS Reports > Legal Reports (Not Ready) -->
+        <!-- <menuitem id="menu_legal_reports_not_ready" name="(Not Ready) 
+            Legal Reports" parent="menu_vas_reports" sequence="100"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Legal Reports > Profit and 
+            Loss -->
+        <!-- <menuitem name="Profit and Loss" action="action_account_profit_and_loss_menu" 
+            id="menu_account_profit_and_loss_sheet" parent="menu_legal_reports_not_ready" 
+            sequence="30"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting Reports (Not Ready) -->
+        <!-- <menuitem id="menu_accounting_reports_not_ready" name="(Not 
+            Ready) Accounting Reports" parent="menu_vas_reports" sequence="100"/> -->
+
+        <!-- Accounting > VAS Reporting > Financial Reports -->
+        <menuitem id="menu_financial_reports" name="Financial Reports"
+            parent="menu_vas_reports" sequence="8" />
+
+        <!-- ============================================================== -->
+        <!-- Accounting > VAS Reports > General Accounting -->
+        <!-- ============================================================== -->
+        <menuitem name="General Accouting" parent="menu_vas_reports"
+            id="account_general_menu" />
+
+        <!-- ============================================================== -->
+        <!-- ... > General Accounting > General Journal -->
+        <!-- ============================================================== -->
+        <menuitem id="menu_account_vas_general_journal" name="General Journal"
+            parent="account_general_menu" action="action_account_vas_general_journal"
+            sequence="60" />
+
+        <!-- ============================================================== -->
+        <!-- ... > General Accounting > General Ledger -->
+        <!-- ============================================================== -->
+        <menuitem name="General Ledger" parent="account_general_menu"
+            action="account_ledger_action" id="account_ledger_menu"
+            sequence="40" />
+
+        <!-- ============================================================== -->
+        <!-- ... > General Accounting > General Ledger (Lite) -->
+        <!-- ============================================================== -->
+        <!-- <menuitem name="General Ledger (Lite)" parent="account_general_menu" 
+            action="account_ledger_lite_action" id="account_ledger_lite_menu" sequence="45"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting reports > Receipt/Payment 
+            Journal -->
+        <!-- <menuitem name="Receipt/Payment Journal" parent="menu_accounting_reports_not_ready" 
+            action="acount_receipt_payment_journal_wizard_action" id="receipt_payment_journal_menu" 
+            sequence="60"/> -->
+
+        <!-- Accounting > Assets > Asset Book -->
+        <menuitem parent="account.menu_finance_entries" id="menu_asset_book"
+            action="account_asset_book_action" />
+
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting reports > Cash 
+            Book -->
+        <!-- <menuitem name="Cash Book/Cash Book At Bank" parent="menu_accounting_reports_not_ready" 
+            action="account_cash_book_action" id="account_cash_book_menu" sequence="40"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting Reports > Sales/Purchase 
+            Journal -->
+        <!-- <menuitem name="Sales/Purchases Journal" parent="menu_accounting_reports_not_ready" 
+            action="sales_purchases_journal_wizard_action" id="sales_purchases_journal_wizard_menu" 
+            sequence="70"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting Reports > Stock 
+            Balance -->
+        <!-- <menuitem name="Stock Balance" parent="menu_accounting_reports_not_ready" 
+            action="account_stock_balance_wizard_action" id="account_stock_balance_wizard_menu" 
+            sequence="80"/> -->
+
+        <!-- FIXME: Accounting > VAS Reports > Accounting Reports > Foreign 
+            Receivable/Payable Ledger -->
+        <!-- <menuitem name="Foreign Receivable/Payable Ledger" parent="menu_accounting_reports_not_ready" 
+            action="account_foreign_receivable_payable_ledger_action" id="foreign_receivable_payable_ledger_menu" 
+            sequence="70"/> -->
+
+        <!-- FIXME: Accounting (or Invoicing) > VAS Reports > Legal Reports 
+            > Cash-flow (indirect) -->
+        <!-- <menuitem name="Cash-flow (indirect)" parent="menu_legal_reports_not_ready" 
+            action="account_cash_flow_indirect_action" id="menu_vas_reports_not_ready" 
+            sequence="40" /> -->
+
+        <!-- Accounting > VAS Reports > Legal Reports > Trial Balance -->
+        <menuitem name="Trial Balance" parent="menu_financial_reports"
+            action="action_account_trial_balance_menu" id="menu_trial_Balance_report"
+            sequence="10" />
+        <!-- FIXME: Accounting > VAS Reports > Tax -->
+        <!-- <menuitem id="menu_tax_reporting" name="(Not Ready) Tax" parent="menu_vas_reports" 
+            sequence="100"/> -->
+
+        <!-- Accounting > VAS Reports > Tax > HTKK Purchase -->
+        <record id="action_view_print_htkk_purchase_wizard"
+            model="ir.actions.act_window">
+            <field name="name">HTKK Purchase</field>
+            <field name="res_model">print.htkk.purchases.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_print_htkk_purchase_wizard_form" />
+            <field name="target">new</field>
+        </record>
+        <!-- FIXME: This feature is not ready -->
+        <!-- <menuitem action="action_view_print_htkk_purchase_wizard" parent="menu_tax_reporting" 
+            id="menu_print_htkk_purchase_wizard" sequence="29"/> -->
+
+        <!-- Accounting > VAS Reports > Tax > HTKK Sales -->
+        <record id="action_view_print_htkk_sales_wizard" model="ir.actions.act_window">
+            <field name="name">HTKK Sales</field>
+            <field name="res_model">print.htkk.sales.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_print_htkk_sales_wizard_form" />
+            <field name="target">new</field>
+        </record>
+        <!-- FIXME: This feature is not ready -->
+        <!-- <menuitem action="action_view_print_htkk_sales_wizard" parent="menu_tax_reporting" 
+            id="menu_print_htkk_sales_wizard" sequence="28"/> -->
+
+        <!-- ============================================================== -->
+        <!-- Accounting > VAS Reports > Stock Accounting -->
+        <!-- ============================================================== -->
+        <menuitem id="menu_stock_accounting" name="Stock Accounting"
+            parent="menu_vas_reports" sequence="15" />
+
+        <!-- ============================================================== -->
+        <!-- Accounting > VAS Reports > Stock Accounting > Stock Ledger -->
+        <!-- ============================================================== -->
+        <menuitem id="account_stock_ledger_wizard_menu" name="Stock Ledger"
+            action="account_stock_ledger_wizard_action" parent="menu_stock_accounting"
+            sequence="90" />
+
+        <record id="action_asset_summary_report_wizard" model="ir.actions.act_window">
+            <field name="name">Asset Increase/Decrease Summary Report
+            </field>
+            <field name="res_model">asset.summary.report.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id"
+                ref="report_account_vas.view_asset_summary_report_wizard_form" />
+        </record>
+
+        <!-- FIXME: This feature is not ready -->
+        <!-- <menuitem id="menu_vas_asset_reports" name="(Not Ready) Asset 
+            Accounting" parent="report_account_vas.menu_vas_reports" sequence="100" /> -->
+
+        <!-- FIXME: This feature is not ready -->
+        <!-- <menuitem name="Asset Increase/Decrease Summary Report" id="menu_asset_summary_report" 
+            action="report_account_vas.action_asset_summary_report_wizard" parent="menu_vas_asset_reports" 
+            /> -->
+
+        <!-- Accounting > VAS Reports > Financial Reports -->
+        <menuitem id="menu_financial_reports" name="Financial Reports"
+            parent="menu_vas_reports" sequence="20" />
+
+        <menuitem name="Profit and Loss" id="menu_account_profit_loss"
+            action="report_account_vas.action_account_profit_and_loss_menu"
+            parent="menu_financial_reports" />
+
+        <!-- ============================================================== -->
+        <!-- Accounting > VAS Reports > Financial Reports > Balance Sheet -->
+        <!-- ============================================================== -->
+        <menuitem name="Balance Sheet" action="action_account_report_balance_sheet"
+            id="menu_account_balance_sheet" parent="menu_financial_reports"
+            sequence="40" />
+
+        <!-- ============================================================== -->
+        <!-- Accounting > VAS Reports > Financial Reports > Cash Flow (Direct) -->
+        <!-- ============================================================== -->
+        <record id="account_cash_flow_report_action" model="ir.actions.act_window">
+            <field name="name">Cash Flow (Direct)</field>
+            <field name="res_model">account.cash.flow.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="Cash Flow (Direct)" id="menu_cash_flow_report"
+            parent="report_account_vas.menu_financial_reports" action="account_cash_flow_report_action"
+            sequence="30" />
+
+    </data>
+</openerp>

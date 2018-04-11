@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate='1'>
+    
+        <!-- Form of the report -->
+        <record id="vietnamese_form" model="ir.config_parameter">
+            <field name="key">vietnamese_form</field>
+            <field name="value">01GTKT2/001</field>
+        </record>
+        <record id="other_form" model="ir.config_parameter">
+            <field name="key">other_form</field>
+            <field name="value">06HDXK2/001</field>
+        </record>
+        
+        <!-- Vietnamese Accounting System -->
+        <record id="report_vas" model="ir.config_parameter">
+        	<field name="key">report_vas</field>
+        	<field name="value">True</field>
+        </record>
+
+        
+    </data>
+</openerp>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            menu="False"
+            auto="False"
+            id="account.account_invoices" 
+            model="account.invoice"
+            name="account.report_invoice"
+            file="account.report_invoice"
+            rml=""
+            string="Invoices"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/',''))"
+            attachment_use="1"
+            multi="True"/>
+
+        <!-- Account General Journal-->
+        <record id="action_account_general_journal_xlsx" model="ir.actions.report.xml">
+              <field name="name">Account General Journal</field>
+              <field name="model">vas.account.general.journal</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">vas_account_general_journal_xlsx</field>
+              <field name="report_type">xlsx</field>
+              <field name="auto" eval="False"/>
+        </record>
+
+
+           <!-- Account Purchases Journal-->
+           <record id="action_account_purchases_journal_xls" model="ir.actions.report.xml">
+              <field name="name">Account Purchases Journal</field>
+              <field name="model">account.move</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">purchases_journal_report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+
+        <!-- Account Purchases Journal-->
+           <record id="action_account_sales_journal_xls" model="ir.actions.report.xml">
+              <field name="name">Account Sales Journal</field>
+              <field name="model">account.move</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">sales_journal_report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+
+          <!-- Account Stock Balance Report-->
+           <record id="action_stock_balance_xls" model="ir.actions.report.xml">
+              <field name="name">Account Stock Balance Report</field>
+              <field name="model">stock.move</field>
+              <field name="type">ir.actions.report.xml</field>
+              <field name="report_name">stock_balance_report</field>
+              <field name="report_type">xls</field>
+              <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

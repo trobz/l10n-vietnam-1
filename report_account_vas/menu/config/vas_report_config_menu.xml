@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- VAS Report Configuration -->
+        <menuitem name="VAS Report"
+            id="menu_vas_report_configuration"
+            parent="account.menu_finance_configuration"
+            groups="account.group_account_manager"/>
+
+        <menuitem name="Balance Report Configuration"
+            id="menu_balance_sheet_configuration"
+            action="action_balance_sheet_config"
+            parent="menu_vas_report_configuration"
+            />
+
+        <menuitem name="Profit and Loss Parameters"
+            id="menu_profit_and_loss_configuration"
+            action="action_profit_and_loss_config"
+            parent="menu_vas_report_configuration"
+            />
+
+        <menuitem name="Indirect Cash Flow Parameters"
+            id="menu_indirect_cash_flow_config_configuration"
+            parent="menu_vas_report_configuration"
+            />
+
+        <menuitem name="Chart of Indirect Cash Flow Parameters"
+            id="menu_indirect_cash_flow_config_configuration_tree_view_type"
+            action="action_indirect_cash_flow_config"
+            parent="menu_indirect_cash_flow_config_configuration"
+            />
+
+        <menuitem name="Tree Indirect Cash Flow Parameters"
+            id="menu_indirect_cash_flow_config_configuration_tree_normal"
+            action="action_indirect_cash_flow_config_tree_view"
+            parent="menu_indirect_cash_flow_config_configuration"
+            />
+
+        <record model="ir.actions.act_window" id="action_cash_flow_direct_config">
+            <field name="name">Cash Flow (Direct) Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.flow.direct.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_cash_flow_direct_config_tree" />
+        </record>
+        <menuitem name="Cash Flow (Direct) Configuration" id="menu_cash_flow_direct_config"
+            action="action_cash_flow_direct_config" parent="menu_vas_report_configuration" />
+        
+    </data>
+</openerp>

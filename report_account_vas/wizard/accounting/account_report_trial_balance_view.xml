@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_report_trial_balance_view1" model="ir.ui.view">
+        <field name="name">account.report.trial.balance.view1</field>
+        <field name="model">account.report.trial.balance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <group>
+                    <field name="company_id" required="1" readonly="0" widget="selection" context="{'user_preference': True}" />
+                    <field name="chart_template_id" widget="selection" invisible="1" />
+                    <field name="target_move" />
+                    <field name="display_account" />
+                    <field name="date_from" required="1" />
+                    <field name="date_to" required="1" />
+                    <field name="journal_ids" widget="many2many_tags" invisible="1" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="check_report" string="Print" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_trial_balance_menu" model="ir.actions.act_window">
+        <field name="name">Trial Balance Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.report.trial.balance.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
