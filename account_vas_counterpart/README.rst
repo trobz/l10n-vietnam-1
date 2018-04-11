@@ -6,9 +6,10 @@
 Account VAS Counterpart
 ======================
 
-In VAS (VietNam Accouting System), this module will have to set
-counterpart for related journal items when generating an journal entry.
-There two main function:
+In VAS (Vietnam Accounting System), this module will set
+counterpart for related journal items when generating a new journal entry.
+
+There are two main functions:
 
 * set_counterpart
 * reset_counterpart

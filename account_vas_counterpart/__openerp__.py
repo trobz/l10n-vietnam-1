@@ -1,46 +1,30 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright 2009-2018 Trobz (<http://trobz.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2009-2018 Trobz (http://trobz.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    'name': 'Account VAS Counterpart',
-    'version': '1.0',
-    'category': '',
-    'description': """
-In VAS (VietNam Accouting System), this module will have to set
-counterpart for related journal items when generating an journal entry.
+    "name": "Account VAS Counterpart",
+    "version": "1.0",
+    "category": "Accounting",
+    "description": """
+In VAS (Vietnam Accounting System), this module will set
+counterpart for related journal items when generating a new journal entry.
 
-There two main function:
+There are two main functions:
 
 * set_counterpart
 * reset_counterpart
     """,
-    'author': 'Trobz',
-    'website': 'http://www.trobz.com',
-    'depends': [
+    "author": "Trobz, Odoo Community Association (OCA)",
+    "website": "http://trobz.com",
+    "depends": [
         # OpenERP Native Modules
-        'account',
-        'account_voucher',
+        "account",
+        "account_voucher",
     ],
-    'data': [
-        'views/account/account_move_view.xml',
+    "data": [
+        "views/account/account_move_view.xml",
     ],
-    'installable': True,
-    'active': False,
-    'application': True,
+    "installable": True,
+    "active": False,
+    "application": True,
 }

@@ -17,7 +17,7 @@ Note that this module conflicts with l10n_vn, just install only one of them.
 Usage
 =====
 
-To use the wizard described above, you need to:
+To use the Update Translation Accounts wizard, you need to:
 
 * Go to Accounting > Adviser > Chart of Accounts
 

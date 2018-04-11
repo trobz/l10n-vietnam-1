@@ -1,28 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright 2009-2018 Trobz (<http://trobz.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2009-2018 Trobz (http://trobz.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Vietnam - Accounting",
     "version": "1.0",
-    "author": "Trobz",
-    'website': 'http://trobz.com',
     "category": "Localization/Account Charts",
     "description": """
 Vietnamese Chart of Accounts
@@ -38,7 +20,7 @@ Installation:
 
 Usage:
 ------
-To use the wizard described above, you need to:
+To use the Update Translation Accounts wizard, you need to:
 
 * Go to Accounting > Adviser > Chart of Accounts
 * Select accounts that you want to update their translation (select on tree view)
@@ -49,6 +31,8 @@ To use the wizard described above, you need to:
 
 
 """,
+    "author": "Trobz, Odoo Community Association (OCA)",
+    "website": "http://trobz.com",
     "depends": ["account", "base_vat", "base_iban"],
     "data": [
         # DATA
